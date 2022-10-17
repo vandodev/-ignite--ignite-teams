@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export function Groups() {
   return (
     <View style={styles.container}>
-      <Text>Groups</Text>
+      <Text style={styles.text}>Groups</Text>
     </View>
   );
 }
@@ -11,8 +11,13 @@ export function Groups() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text:{
+    color:"#fff",
+    fontSize:32
+
+  }
 });
