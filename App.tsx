@@ -1,5 +1,7 @@
 import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components/native'; 
+
+import { NewGroup} from '@screens/NewGroup';
 import { Groups } from '@screens/Groups';
 import theme from './src/theme';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
@@ -16,7 +18,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-      {fontsLoaded ? <Groups /> : <Loading/>}
+      {fontsLoaded ? <NewGroup /> : <Loading/>}
     </ThemeProvider>
     
   );
