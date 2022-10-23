@@ -1,4 +1,5 @@
 import { useState} from 'react';
+import { useNavigation } from '@react-navigation/native'
 import { FlatList } from 'react-native';
 
 import { GroupCard } from '@components/GroupCard';
@@ -10,6 +11,13 @@ import { Button } from '@components/Button';
 
 export function Groups() {
   const [groups, setGroups] = useState<string[]>(['Galera do ignite', 'Grupo de programação']);
+
+   const navigation = useNavigation();
+
+  function handleNewGroup() {
+    navigation.navigate('new');
+  }
+
   return (
     <Container>
       <Header/>
@@ -33,7 +41,7 @@ export function Groups() {
 
       <Button
         title='Criar nova turma' 
-        // type='SECONDARY'
+        onPress={handleNewGroup}
        />
      
     </Container>    
