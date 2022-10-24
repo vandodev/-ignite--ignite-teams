@@ -9,13 +9,17 @@ import {Container, } from './styles'
 import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
 
+// export function Groups(props) {
+// export function Groups({navigation}) {
 export function Groups() {
   const [groups, setGroups] = useState<string[]>(['Galera do ignite', 'Grupo de programação']);
 
-   const navigation = useNavigation();
+  const navigation = useNavigation();
 
   function handleNewGroup() {
-    navigation.navigate('new');
+    // navigation.navigate('new');
+    // props.navigation.navigate('new')
+    navigation.navigate('new')
   }
 
   return (
