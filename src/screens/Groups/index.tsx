@@ -1,5 +1,5 @@
-import { useState} from 'react';
-import { useNavigation } from '@react-navigation/native'
+import { useState, useEffect, useCallback} from 'react';
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { FlatList } from 'react-native';
 
 import { GroupCard } from '@components/GroupCard';
@@ -8,19 +8,30 @@ import { Highlight } from '@components/Highlight';
 import {Container, } from './styles'
 import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
+import { groupsGetAll } from '@storage/group/groupsGetAll';
 
-// export function Groups(props) {
-// export function Groups({navigation}) {
+
 export function Groups() {
-  const [groups, setGroups] = useState<string[]>(['Galera do ignite', 'Grupo de programação']);
+  const [groups, setGroups] = useState<string[]>([]);
 
   const navigation = useNavigation();
 
   function handleNewGroup() {
-    // navigation.navigate('new');
-    // props.navigation.navigate('new')
-    navigation.navigate('new')
+     navigation.navigate('new')
   }
+
+  async function fetchGroups() {
+    try {
+      const data = await groupsGetAll();
+      setGroups(data)
+    } catch (error) {
+      console.log(error);
+    } 
+  }
+
+  useFocusEffect(useCallback(() =>{
+    fetchGroups();
+  },[]))
 
   return (
     <Container>
