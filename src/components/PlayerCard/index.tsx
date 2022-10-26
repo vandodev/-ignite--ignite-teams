@@ -4,9 +4,11 @@ import { Container, Icon, Name } from './styles';
 
 type Props = {
   name: string;
+  onRemove: () => void;
 }
 
-export function PlayerCard({ name }: Props) {
+
+export function PlayerCard({ name, onRemove }: Props) {
   return(
     <Container>
       <Icon 
@@ -20,6 +22,7 @@ export function PlayerCard({ name }: Props) {
       <ButtonIcon 
         icon="close" 
         type="SECONDARY"
+        onPress={onRemove}
       />
     </Container>
   );
