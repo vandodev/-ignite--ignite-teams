@@ -1,5 +1,5 @@
 import { FlatList, Alert } from 'react-native';
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import { ButtonIcon } from '@components/ButtonIcon';
 import { Filter } from '@components/Filter';
 import { Header } from '@components/Header';
@@ -41,6 +41,7 @@ export function Players() {
         try {
           await playerAddByGroup(newPlayer, group);
           const players = await playersGetByGroup(group);
+          fetchPlayersByTeam();
           console.log(players);
         
         } catch (error) {
@@ -62,6 +63,10 @@ export function Players() {
           Alert.alert('Pessoas', 'Não foi possível carregar as pessoas do time selecionado.');
         } 
       }
+
+      useEffect(() => {
+        fetchPlayersByTeam();
+      },[team])
 
     return(
         <Container>
@@ -107,10 +112,10 @@ export function Players() {
 
         <FlatList 
             data={players}
-            keyExtractor={item => item}
+            keyExtractor={item => item.name}
             renderItem={({ item }) => (
               <PlayerCard 
-                name={item} 
+                name={item.name} 
               />
             )}
             
